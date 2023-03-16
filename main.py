@@ -39,6 +39,9 @@ stealth(driver,
         fix_hairline=True,
         )
 
+def sleeper():
+        time.sleep(float("0." + random.choice(timers[0:3]) + random.choice(timers[0:4]) + random.choice(timers[0:9])))
+
 def logging_in():
         driver.get(variables[0])
 
@@ -50,12 +53,12 @@ def logging_in():
         finally:
                 for i in username:
                         fieldForm.send_keys(i)
-                        time.sleep(float("0." + random.choice(timers[0:3]) + random.choice(timers[0:4]) + random.choice(timers[0:9])))
+                        sleeper()
 
         fieldForm = driver.find_element("xpath", variables[2])
         for i in password:
                 fieldForm.send_keys(i)
-                time.sleep(float("0." + random.choice(timers[0:3]) + random.choice(timers[0:4]) + random.choice(timers[0:9])))
+                sleeper()
 
         try:
                 WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, variables[3])))
@@ -68,3 +71,4 @@ def logging_in():
 logging_in()
 end = time.time()
 print(f"You has been succesfully logged in to your tik tok account, script executed in {end-start_b}s")
+time.sleep(10)
